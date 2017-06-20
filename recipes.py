@@ -56,11 +56,11 @@ def getDynamicContent(req):
     parameters = result.get("parameters")
     dishType = parameters.get("dish-type")
     vegetable = parameters.get("vegetable")
-    meat = parameters.get("meat")
-    if (dishType is None) and (vegetable is None) and (meat is None):
+    #meat = parameters.get("meat")
+    if (dishType is None) and (vegetable is None)# and (meat is None):
         return None
       
-    return dishType+","+vegetable+","+meat
+    return dishType+","+vegetable#+","+meat
 
 
 def makeWebhookResult(data):
@@ -79,10 +79,8 @@ def makeWebhookResult(data):
     if publisher is None:
         return {}
 
-    imageUrl = recipes.get('image_url')
-    if condition is None:
-        return {}
-
+    #imageUrl = recipes.get('image_url')
+   
     # print(json.dumps(item, indent=4))
 
     speech = "I think you should try the " + title + " recipe I found on " + publisher + " website"
