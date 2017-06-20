@@ -67,7 +67,7 @@ def makeWebhookResult(data):
     count = data.get('count')
     c = randint(0, count);
    
-    recipes = data.get('recipes['+c+']')
+    recipes = data.get('recipes[0]')
     if recipes is None:
         return {}
 
