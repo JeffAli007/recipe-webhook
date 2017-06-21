@@ -12,6 +12,7 @@ from urllib.error import HTTPError
 
 import json
 import os
+import requests
 
 from flask import Flask
 from flask import request
@@ -40,13 +41,13 @@ def webhook():
 def processRequest(req):
     if req.get("result").get("action") != "recipe.recommendation":
         return {}
-    baseurl = "https://food2fork.com/api/search?key=6507744e6236b538625e845500a3184e&"
+    baseurl = "https://food2fork.com/api/search?"
     dynamic_Content = getDynamicContent(req)
     if dynamic_Content is None:
         return {}
-    final_url = baseurl + urlencode({'q': dynamic_Content})
-    result = urlopen(final_url).read()
-    data = json.loads(result)
+    final_url = baseurl + urlencode({'key':'6507744e6236b538625e845500a3184e','q': dynamic_Content})
+    result = requests.get(final_url)
+    data = json.loads(result.text)
     res = makeWebhookResult(data)
     return res
 
@@ -57,25 +58,21 @@ def getDynamicContent(req):
     dishType = parameters.get("dish-type")
     vegetable = parameters.get("vegetable")
     #meat = parameters.get("meat")
-    if (dishType is None) and (vegetable is None)# and (meat is None):
+    if (dishType is None) and (vegetable is None):# and (meat is None):
         return None
       
     return dishType+","+vegetable#+","+meat
 
 
 def makeWebhookResult(data):
-    count = data.get('count')
+    count = data['count']
     c = randint(0, count);
    
-    recipes = data.get('recipes[0]')
-    if recipes is None:
-        return {}
-
-    title = recipes.get('title')
+    title = data['recipes'][c]['title']
     if title is None:
         return {}
 
-    publisher = recipes.get('publisher')
+    publisher = data['recipes'][c]['publisher']
     if publisher is None:
         return {}
 

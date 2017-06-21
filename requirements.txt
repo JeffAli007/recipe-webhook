@@ -1,2 +1,4 @@
-Flask==0.10.1
+Flask==0.12.2
 future==0.16.0
+requests==2.18.1
+urllib3==1.21.1
