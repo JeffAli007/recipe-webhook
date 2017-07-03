@@ -75,19 +75,24 @@ def makeWebhookResult(data):
     publisher = data['recipes'][c]['publisher']
     if publisher is None:
         return {}
+		
+	sourceURL = data['recipes'][c]['source_url']
+    if sourceURL is None:
+        return {}
 
     #imageUrl = recipes.get('image_url')
    
     # print(json.dumps(item, indent=4))
 
     speech = "I think you should try the " + title + " recipe I found on " + publisher + " website"
+	displayText = "I think you should try the " + title + " recipe I found on " + publisher + " website. Link to recipe is below : " + sourceURL
     
     print("Response:")
     print(speech)
 
     return {
         "speech": speech,
-        "displayText": speech,
+        "displayText": displayText,
         "data": {} ,
         "contextOut": [],
         "source": "apiai-recipe-webhook"
