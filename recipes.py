@@ -76,7 +76,7 @@ def makeWebhookResult(data):
     if publisher is None:
         return {}
 		
-	sourceURL = data['recipes'][c]['source_url']
+    sourceURL = data['recipes'][c]['source_url']
     if sourceURL is None:
         return {}
 
@@ -85,7 +85,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
 
     speech = "I think you should try the " + title + " recipe I found on " + publisher + " website"
-    displayText = "I think you should try the " + title + " recipe I found on " + publisher + " website. Link to recipe is below : " + sourceURL + " Enjoy !"
+    displayText = "I think you should try the " + title + " recipe I found on " + publisher + " website. Link of recipe is stated below : " + sourceURL
     
     print("Response:")
     print(speech)
