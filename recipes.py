@@ -85,7 +85,7 @@ def makeWebhookResult(data):
     # print(json.dumps(item, indent=4))
 
     speech = "I think you should try the " + title + " recipe I found on " + publisher + " website"
-    displayText = "I think you should try the " + title + " recipe I found on " + publisher + " website. Link to recipe is below : " + sourceURL
+    displayText = "I think you should try the " + title + " recipe I found on " + publisher + " website. Link to recipe is below : " + sourceURL + " Enjoy !"
     
     print("Response:")
     print(speech)
